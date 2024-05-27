@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="style.css">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tesseract VPN PHP</title>
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="bgimg">
   <h1>Tesseract VPN PHP</h1>
   <h2>The source image is:</h2>
   <img src="https://www.vpnbook.com/password.php">
   <h2> The OCR (copy paste) is</h2>
   <div id="output"></div>
-  <h2>Note: you may have to click a <a href="https://cors-anywhere.herokuapp.com"> link here</a><h2>
+  <h2>Note: you may have to click a <a href="https://cors-anywhere.herokuapp.com"> link here:</a> or in the iFrame<h2>
   <iframe src="https://cors-anywhere.herokuapp.com/"></iframe>
 
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
@@ -44,5 +45,6 @@
     }
     window.onload = performOCR;
   </script>
+</div>
 </body>
 </html>
