@@ -12,15 +12,15 @@
   <h1>Tesseract OCR Example</h1>
   <input type="file" accept="image/*" id="imageInput">
   <div id="output"></div>
-
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
   <script>
-    document.getElementById('imageInput').addEventListener('change', function(e) {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.onload = async function(event) {
+    document.getElementById('extractBtn').addEventListener('click', async function() {
+      try {
+        const imageUrl = 'https://www.vpnbook.com/password.php';
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
         const image = new Image();
-        image.src = event.target.result;
+        image.src = URL.createObjectURL(blob);
         image.onload = async function() {
           const { data: { text } } = await Tesseract.recognize(
             image,
@@ -29,9 +29,11 @@
           );
           document.getElementById('output').textContent = text;
         };
-      };
-      reader.readAsDataURL(file);
+      } catch (error) {
+        console.error('Error:', error);
+      }
     });
   </script>
 </body>
 </html>
+
