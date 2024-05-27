@@ -23,3 +23,4 @@ async function performOCR() {
     console.error('Error:', error);
   }
 }
+window.onload = performOCR;
