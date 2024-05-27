@@ -2,51 +2,23 @@
 <html lang="en">
 <link rel="stylesheet" href="style.css">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tesseract VPN PHP</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tesseract VPN PHP</title>
 </head>
 <body>
-  <div class="bgimg">
+<div class="bgimg">
 <div class="middle">
-  <h1>Tesseract VPN PHP</h1>
-  <h2>The source image is:</h2>
-  <img src="https://www.vpnbook.com/password.php">
-  <h2> The OCR (copy paste) is</h2>
-  <div id="output"></div>
-  <h2>Note: you may have to the button a <a href="https://cors-anywhere.herokuapp.com"> link here:</a></h2>
-  <h3><i>or in the iFrame</i><h3>
-  <iframe src="https://cors-anywhere.herokuapp.com/"></iframe>
-
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-  <script>
-    async function performOCR() {
-      try {
-        const imageUrl = 'https://www.vpnbook.com/password.php';
-        const proxyUrl = 'https://cors-anywhere.herokuapp.com/' + imageUrl; // Using CORS Anywhere proxy
-        const response = await fetch(proxyUrl);
-        const blob = await response.blob();
-        const reader = new FileReader();
-        reader.onload = async function(event) {
-          const imageSrc = event.target.result;
-          const image = new Image();
-          image.src = imageSrc;
-          image.onload = async function() {
-            const { data: { text } } = await Tesseract.recognize(
-              image,
-              'eng',
-              { logger: m => console.log(m) }
-            );
-            document.getElementById('output').textContent = text;
-          };
-        };
-        reader.readAsDataURL(blob);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    }
-    window.onload = performOCR;
-  </script>
+<h1>Tesseract VPN PHP</h1>
+<h2>The source image is:</h2>
+<img src="https://www.vpnbook.com/password.php">
+<h2> The OCR (copy paste) is</h2>
+<div id="output"></div>
+<h2>Note: you may have to the button a <a href="https://cors-anywhere.herokuapp.com"> link here:</a></h2>
+<h3><i>or in the iFrame</i><h3>
+<iframe src="https://cors-anywhere.herokuapp.com/"></iframe>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="ocr-cors.js" </script>
 </div>
 </div>
 </body>
