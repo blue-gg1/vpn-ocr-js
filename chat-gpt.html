@@ -8,12 +8,14 @@
 </head>
 <body>
   <div class="bgimg">
+<div class="middle">
   <h1>Tesseract VPN PHP</h1>
   <h2>The source image is:</h2>
   <img src="https://www.vpnbook.com/password.php">
   <h2> The OCR (copy paste) is</h2>
   <div id="output"></div>
-  <h2>Note: you may have to click a <a href="https://cors-anywhere.herokuapp.com"> link here:</a> or in the iFrame<h2>
+  <h2>Note: you may have to the button a <a href="https://cors-anywhere.herokuapp.com"> link here:</a></h2>
+  <h3><i>or in the iFrame</i><h3>
   <iframe src="https://cors-anywhere.herokuapp.com/"></iframe>
 
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
@@ -21,7 +23,7 @@
     async function performOCR() {
       try {
         const imageUrl = 'https://www.vpnbook.com/password.php';
-        // const proxyUrl = 'https://cors-anywhere.herokuapp.com/' + imageUrl; // Using CORS Anywhere proxy
+        const proxyUrl = 'https://cors-anywhere.herokuapp.com/' + imageUrl; // Using CORS Anywhere proxy
         const response = await fetch(proxyUrl);
         const blob = await response.blob();
         const reader = new FileReader();
@@ -45,6 +47,7 @@
     }
     window.onload = performOCR;
   </script>
+</div>
 </div>
 </body>
 </html>
