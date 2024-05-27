@@ -1,6 +1,5 @@
 <!-- https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js -->
 <!-- https://www.vpnbook.com/password.php -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +9,11 @@
 </head>
 <body>
   <h1>Tesseract OCR Example</h1>
-  <input type="file" accept="image/*" id="imageInput">
   <div id="output"></div>
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2"></script>
   <script>
-    document.getElementById('extractBtn').addEventListener('click', async function() {
+    async function performOCR() {
       try {
         const imageUrl = 'https://www.vpnbook.com/password.php';
         const response = await fetch(imageUrl);
@@ -32,8 +31,9 @@
       } catch (error) {
         console.error('Error:', error);
       }
-    });
+    }
+
+    window.onload = performOCR;
   </script>
 </body>
 </html>
-
