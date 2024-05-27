@@ -5,13 +5,14 @@
     <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
   </head>
   <body>
+    <img src="https://www.vpnbook.com/password.php">
     <input type="file" id="uploader" multiple>
     <script type="module">
 
       // A worker is created once and used every time a user uploads a new file.  
       const worker = await Tesseract.createWorker("eng", 1, {
-          corePath: '../../node_modules/tesseract.js-core',
-          workerPath: "/dist/worker.min.js",
+          // corePath: '../../node_modules/tesseract.js-core',
+          workerPath: "https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/worker.min.js",
           logger: function(m){console.log(m);}
         });
 
