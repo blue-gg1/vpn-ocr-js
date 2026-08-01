@@ -1,46 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>VPNBook Password Mirror</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-
-    #password {
-      font-size: 24px;
-      font-family: monospace;
-      padding: 8px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>VPNBook Password Fetcher</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+}
+input {
+    font-size: 2rem;
+    font-family: monospace;
+    width: 180px;
+}
+</style>
 </head>
 <body>
 
 <h2>VPNBook Password</h2>
-
-<input id="password" readonly>
+<input id="password" readonly value="Loading...">
 
 <script>
-(async () => {
+const url = "https://corsproxy.io/?url=" + encodeURIComponent(
+    "https://www.vpnbook.com/freevpn/openvpn"
+);
+
+async function update() {
     try {
-        const response = await fetch("https://www.vpnbook.com/freevpn/openvpn");
-        const html = await response.text();
+        const html = await fetch(url).then(r => r.text());
 
         const doc = new DOMParser().parseFromString(html, "text/html");
 
-        const code = [...doc.querySelectorAll("code")]
-            .find(el => /^[A-Za-z0-9]{6,12}$/.test(el.textContent.trim()));
+        const codes = [...doc.querySelectorAll("code")]
+            .map(e => e.textContent.trim());
+
+        // Password is the code that's not "vpnbook"
+        const password = codes.find(v => v.toLowerCase() !== "vpnbook");
 
         document.getElementById("password").value =
-            code ? code.textContent.trim() : "Not found";
+            password || "Not found";
+
     } catch (err) {
-        document.getElementById("password").value =
-            "Blocked by browser (CORS)";
         console.error(err);
+        document.getElementById("password").value = "Error";
     }
-})();
+}
+
+update();
+setInterval(update, 300000); // every 5 minutes
 </script>
 
 </body>
