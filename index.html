@@ -21,9 +21,7 @@ input {
 <input id="password" readonly value="Loading...">
 
 <script>
-const url = "https://corsproxy.io/?url=" + encodeURIComponent(
-    "https://www.vpnbook.com/freevpn/openvpn"
-);
+const url = "https://cors-anywhere.herokuapp.com/" + "https://www.vpnbook.com/freevpn/openvpn"
 
 async function update() {
     try {
@@ -49,6 +47,10 @@ async function update() {
 update();
 setInterval(update, 300000); // every 5 minutes
 </script>
+<br>
+<iframe>
+    https://cors-anywhere.herokuapp.com/corsdemo
+</iframe>
 
 </body>
 </html>
