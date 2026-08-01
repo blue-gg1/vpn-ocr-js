@@ -1,25 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="style.css">
-    <head>
-        <meta charset="UTF-8">
-        <title>Tesseract VPN PHP</title>
-    </head>
-    <body>
-        <div class="bgimg">
-            <div class="middle">
-                <h1>Tesseract VPN PHP</h1>
-                <h2>The source image is:</h2>
-                <img src="https://www.vpnbook.com/password.php">
-                <h2> The OCR (copy paste) is</h2>
-                <div id="output"></div>
-                <h2>Note: you may have to the button a <a href="https://cors-anywhere.herokuapp.com"> link here:</a></h2>
-                <h3><i>or in the iFrame</i><h3>
-                <iframe src="https://cors-anywhere.herokuapp.com/"></iframe>
-                <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-                <script src="ocr-cors.js"></script>
-            </div>
-        </div>
-        <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "153482aef64a4a25a5b512cccf4143e8"}'></script><!-- End Cloudflare Web Analytics -->
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <title>VPNBook Password Mirror</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    #password {
+      font-size: 24px;
+      font-family: monospace;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>VPNBook Password</h2>
+
+<input id="password" readonly>
+
+<script>
+(async () => {
+    try {
+        const response = await fetch("https://www.vpnbook.com/freevpn/openvpn");
+        const html = await response.text();
+
+        const doc = new DOMParser().parseFromString(html, "text/html");
+
+        const code = [...doc.querySelectorAll("code")]
+            .find(el => /^[A-Za-z0-9]{6,12}$/.test(el.textContent.trim()));
+
+        document.getElementById("password").value =
+            code ? code.textContent.trim() : "Not found";
+    } catch (err) {
+        document.getElementById("password").value =
+            "Blocked by browser (CORS)";
+        console.error(err);
+    }
+})();
+</script>
+
+</body>
 </html>
