@@ -1,56 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>VPNBook Password Fetcher</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 40px;
-}
-input {
-    font-size: 2rem;
-    font-family: monospace;
-    width: 180px;
-}
-</style>
-</head>
-<body>
+    <link rel="stylesheet" href="style.css">
+        <head>
+        <meta charset="UTF-8">
+        <title>VPNBook Password Fetcher</title>
+        </head>
+    <body>
+        <div class="bgimg">
+            <div class="middle">
+                <h2>VPNBook Password</h2>
+                <input id="password" readonly value="Loading...">
 
-<h2>VPNBook Password</h2>
-<input id="password" readonly value="Loading...">
-
-<script>
-const url = "https://cors-anywhere.herokuapp.com/" + "https://www.vpnbook.com/freevpn/openvpn"
-
-async function update() {
-    try {
-        const html = await fetch(url).then(r => r.text());
-
-        const doc = new DOMParser().parseFromString(html, "text/html");
-
-        const codes = [...doc.querySelectorAll("code")]
-            .map(e => e.textContent.trim());
-
-        // Password is the code that's not "vpnbook"
-        const password = codes.find(v => v.toLowerCase() !== "vpnbook");
-
-        document.getElementById("password").value =
-            password || "Not found";
-
-    } catch (err) {
-        console.error(err);
-        document.getElementById("password").value = "Error";
-    }
-}
-
-update();
-setInterval(update, 300000); // every 5 minutes
-</script>
-<br>
-<iframe>
-    https://cors-anywhere.herokuapp.com/corsdemo
-</iframe>
-
-</body>
+                <script>
+                    const url = "https://cors-anywhere.herokuapp.com/" + "https://www.vpnbook.com/freevpn/openvpn"
+                    async function update() {
+                        try {
+                            const html = await fetch(url).then(r => r.text());
+                            const doc = new DOMParser().parseFromString(html, "text/html");
+                            const codes = [...doc.querySelectorAll("code")]
+                                .map(e => e.textContent.trim());
+                            // Password is the code that's not "vpnbook"
+                            const password = codes.find(v => v.toLowerCase() !== "vpnbook");
+                            document.getElementById("password").value =
+                                password || "Not found";
+                        } catch (err) {
+                            console.error(err);
+                            document.getElementById("password").value = "Error";
+                        }
+                    }
+                </script>
+                <br>
+                <br>
+                <h2>CORS Button</h2>
+                <iframe>
+                    https://cors-anywhere.herokuapp.com/corsdemo
+                </iframe>
+            </div>
+        </div>
+    </body>
 </html>

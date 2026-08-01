@@ -2,6 +2,15 @@ html, body {
   height: 100%;
   margin: 0;
 }
+body {
+        font-family: Arial, sans-serif;
+        /* margin: 40px; */
+}
+input {
+        font-size: 2rem;
+        font-family: monospace;
+        width: 180px;
+}
 .bgimg
 {
   background-image: linear-gradient(rgb(255, 0, 0) , rgb(255, 255, 255) , rgb(0, 0, 255));
@@ -12,7 +21,7 @@ html, body {
   color: black;
   font-family: "Courier New", Courier, monospace;
   font-size: 25px;
-/* }
+}
 .topleft
 {
   position: absolute;
@@ -26,11 +35,11 @@ html, body {
   right: 16px;
 }
 .bottomleft
-{
+/* {
   position: absolute;
   bottom: 0;
   left: 16px;
-{
+{ */
 .bottomright
 {
   position: absolute;
@@ -42,6 +51,6 @@ html, body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
   text-align: center;
 }
