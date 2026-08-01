@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="style.css">
-        <head>
+    <head>
         <meta charset="UTF-8">
         <title>VPNBook Password Fetcher</title>
-        </head>
+        <link rel="stylesheet" href="style.css">
+    </head>
     <body>
         <div class="bgimg">
             <div class="middle">
@@ -28,15 +28,14 @@
                             document.getElementById("password").value = "Error";
                         }
                     }
+                    update()
                 </script>
                 <h5><i>Brought to you by vpnbook dot com backslash freevpn backslash openvpn</i></h5>
                 <br>
                 <br>
                 <h2>The CORS Button</h2>
                 <h5><i>Brought to you by cors-anywhere dot herokuapp dot com</i></h5>
-                <iframe>
-                    https://cors-anywhere.herokuapp.com/corsdemo
-                </iframe>
+                <iframe src="https://cors-anywhere.herokuapp.com/corsdemo"></iframe>
             </div>
         </div>
     </body>
